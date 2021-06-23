@@ -4,7 +4,7 @@ const score = document.querySelector('.score'),
     car = document.createElement('div');
 car.classList.add('car');
 
-start.addEventListener('click', startGame);4
+start.addEventListener('click', startGame);
 document.addEventListener('keydown', startRun);
 document.addEventListener('keyup', stopRun);
 
@@ -28,6 +28,7 @@ function getQuantityElements(heightElement){
 
 function startGame(){
     start.classList.add('hide');
+    gameArea.classList.remove('hide');
 
     for(let i = 0; i < getQuantityElements(100); i++){
         const line = document.createElement('div');
@@ -67,7 +68,7 @@ function playGame(){
         if(keys.ArrowUp && setting.y > 0){
             setting.y -= setting.speed;
         }
-        if(keys.ArrowDown && setting.x < (gameArea.offsetHeight - car.offsetHeight)){
+        if(keys.ArrowDown && setting.y < (gameArea.offsetHeight - car.offsetHeight)){
             setting.y += setting.speed;
         }
 
