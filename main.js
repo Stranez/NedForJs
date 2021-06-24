@@ -72,7 +72,7 @@ function startGame(){
     setting.score = 0;
     setting.start = true;
     gameArea.appendChild(car);
-    car.style.left = gameArea.offsetWidth / 2 - car.offsetWidth / 2;
+    car.style.left = gameArea.offsetWidth / 2 - car.offsetWidth / 2 + 'px';
     car.style.top = 'auto';
     car.style.bottom = '10px';
     setting.x = car.offsetLeft;
@@ -144,7 +144,7 @@ function moveEnemy(){
                 setting.start = false;
                 console.warn('DTP');
                 start.classList.remove('hide');
-                start.style.top = score.offsetHeight;
+                start.style.top = score.offsetHeight + 'px';
                 setTimeout(() => {
                     music.remove()
                 }, 3);
