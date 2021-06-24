@@ -1,9 +1,16 @@
 'use strict';
 
+const MAX_ENEMY = 7; //d машины
+
 const score = document.querySelector('.score'),
     start = document.querySelector('.start'),
     gameArea = document.querySelector('.gameArea'),
     car = document.createElement('div');
+
+const music = document.createElement('embed');//d муз
+
+music.src = 'audio.mp3';//d муз
+
 car.classList.add('car');
 
 start.addEventListener('click', startGame);
@@ -28,7 +35,12 @@ function getQuantityElements(heightElement){
     return document.documentElement.clientHeight / heightElement + 1;
 }
 
+const getRandomEnemy = (max) => Math.floor((Math.random() * max) + 1); //d машины
+
 function startGame(){
+    document.body.append(music);// муз
+
+    music.classList.add('hide');
     start.classList.add('hide');
     gameArea.classList.remove('hide');
     gameArea.innerHTML = '';
@@ -49,7 +61,11 @@ function startGame(){
         enemy.y = -100 * setting.traffic * (i + 1);
         enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
         enemy.style.top = enemy.y + 'px';
-        enemy.style.background = 'transparent url(image/enemy.png) center /cover no-repeat';
+        enemy.style.background = `
+            transparent 
+            url(image/enemy${getRandomEnemy(MAX_ENEMY)}.png) 
+            center /cover 
+            no-repeat`; //d машины
         gameArea.appendChild(enemy);
     }
 
@@ -92,12 +108,16 @@ function playGame(){
 }
 
 function startRun(event){
-   event.preventDefault();
-   keys[event.key] = true;
+    if(keys.hasOwnProperty(event.key)){
+        event.preventDefault();
+        keys[event.key] = true;
+    }
 }
 function stopRun(event){
-    event.preventDefault();
-    keys[event.key] = false;
+    if(keys.hasOwnProperty(event.key)){
+        event.preventDefault();
+        keys[event.key] = false;
+    }
 }
 function moveRoad(){
     let lines = document.querySelectorAll('.line');
@@ -125,6 +145,9 @@ function moveEnemy(){
                 console.warn('DTP');
                 start.classList.remove('hide');
                 start.style.top = score.offsetHeight;
+                setTimeout(() => {
+                    music.remove()
+                }, 3);
         }
 
         item.y += setting.speed / 2;
