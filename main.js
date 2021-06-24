@@ -40,7 +40,7 @@ const getRandomEnemy = (max) => Math.floor((Math.random() * max) + 1); //d ма�
 function startGame(){
     document.body.append(music);// муз
 
-    music.classList.add('hide');
+    music.classList.add('embed');
     start.classList.add('hide');
     gameArea.classList.remove('hide');
     gameArea.innerHTML = '';
