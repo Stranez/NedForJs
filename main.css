@@ -1,3 +1,10 @@
+:root{
+    --height-elem: 100px
+}
+
+*{
+    box-sizing: border-box;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,6 +31,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+    position: relative;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: #ccc;
+    font-size: 14px;
 }
 ol, ul {
 	list-style: none;
@@ -47,19 +58,24 @@ table {
 }
 
 .car, .enemy{
-    width: 50px;
-    height: 100px;
-    background: transparent url('image/player.png') center /cover no-repeat;
+    width: calc(var(--height-elem) / 2);
+    height: var(--height-elem);
+    background: transparent url('image/player.png') center / contain no-repeat;
     position: absolute;
     left: 125px;
     bottom: 10px;
 }
 
+.game{
+    height: 100%;
+    display: flex;
+}
+
 .gameArea{
     width: 300px;
-    height: 100%;
+    margin-top: 60px;
     position: relative;
-    margin: auto;
+    margin: 60px auto;
     background: #222;
     overflow: hidden;
 }
@@ -67,13 +83,13 @@ table {
 .line{
     position: absolute;
     width: 10px;
-    height: 50px;
+    height: calc(var(--height-elem) / 2);
     background: #fff;
     left: 145px;
 }
 
 .start{
-    position: absolute;
+    /* position: absolute;
     left: 0;
     top: 0;
     width: 100%;
@@ -86,19 +102,52 @@ table {
     background: #000;
     cursor: pointer;
     font-family: sans-serif;
+    font-weight: 700; */
+    /* стили с стрима */
+    position: fixed;
+    background: rgba(39, 39, 39, 0.877);
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    padding: 1rem;
+    box-shadow: 1px 1px 3px 1px rgba(105, 103, 103, 0.548);
+    font-size: 20px;
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    background: rgb(71,71,71);
+    background: radial-gradient(circle, rgba(71, 71, 71, 0.931) 0%, rgba(1,1,1,1) 100%);
+    border: none;
+    padding: 9px 22px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color:cornsilk;
+    font: inherit;
+    cursor: pointer;
+}
+
+.btn:disabled{
+    background: rgb(133,133,133);
+    background: radial-gradient(circle, rgba(133,133,133,0.927608543417367) 0%, rgba(199,196,196,1) 100%);
+    color: rgba(158, 153, 153, 0.192);
 }
 
 .score{
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
+    left: 25px;
+    width: 25%;
+    min-height: 56px;
     padding: 1rem 0;
     text-align: center;
     z-index: 200;
+    border-radius: 10px / 10px;
+    background: rgba(39, 39, 39, 0.877);
     color: rgb(13, 207, 255);
-    background: #000;
     font-size: 1.5rem;
     font-family: sans-serif;
     font-weight: 500;
@@ -107,5 +156,5 @@ table {
 .embed{
     position: absolute;
     top: 0;
-    left: -999999999;
+    left: -999999999px;
 }
